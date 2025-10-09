@@ -1,0 +1,41 @@
+@font-face {
+    font-family: f1;
+    src: url(./Formula1-Bold_web_0.ttf);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+#img{
+    height: 100%;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/29817508/pexels-photo-29817508.jpeg);
+    background-size: cover;
+    background-position:bottom;
+}
+
+h1{
+    text-align: center;
+    color:mintcream;
+    font-family:f1;
+    padding-top: 350px;
+
+}
+button{
+    font-family: f1;
+    font-size: larger;
+    margin-left: 525px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px, solid, red;
+    border-radius: 50px;
+    background-color: floralwhite;
+}
