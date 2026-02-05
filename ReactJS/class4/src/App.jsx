@@ -3,36 +3,47 @@ import Card from './components/Card'
 
 const App = () => {
 
+ 
+
   const [userName, setUserName] = useState('')
   const [userRole, setUserRole] = useState('')
   const [imageURL, setImageURL] = useState('')
   const [userDesc, setuserDesc] = useState('')
 
-  const [allUsers, setAllUsers] = useState([])
+  const localData = JSON.parse(localStorage.getItem('all-users')) || []
+
+  const [allUsers, setAllUsers] = useState(localData)
 
 
   const submitHandler = (e)=>{
     e.preventDefault()
+
     const oldUsers = [...allUsers]
+
     oldUsers.push({userName,userRole,imageURL,userDesc})
+
     console.log(oldUsers)
+
     setAllUsers(oldUsers)
+    localStorage.setItem('all-users', JSON.stringify(oldUsers))
 
 
     setUserName('')
     setImageURL('')
     setUserRole('')
     setuserDesc('')
-    
   }
 
   const deleteHandler=(idx)=>{
     const copyUsers = [...allUsers]
+
     copyUsers.splice(idx,1)
-    console.log(copyUsers)
+
+    /*console.log(copyUsers)*/
 
     setAllUsers(copyUsers)
-  }
+        localStorage.setItem('all-users', JSON.stringify(copyUsers))
+}
 
 
 
@@ -92,7 +103,7 @@ const App = () => {
       <p className='text-sm font-medium leading-tight text-black'>{elem.userDesc}</p>
       <button onClick={(idx)=>{
         deleteHandler(idx)
-      }}
+      }}  
       
       className='px-3 py-1 rounded bg-red-600 text-white font-semibold mt-3 text-sm cursor-pointer active:scale-95'>Remove</button>
     </div>

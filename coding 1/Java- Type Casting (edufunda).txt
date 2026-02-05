@@ -1,0 +1,112 @@
+Java- Type Casting (edufunda)
+
+ype casting
+
+The process of converting one type of data into another type of data is known as type casting. 
+
+There are two types of type casting:
+1. Primitive type casting
+2. Non-primitive type casting
+
+ 		Primitive type casting:
+				1. Widening
+				2. Narrowing
+	This primitive type casting is used to convert one primitive data into another primitive data.
+		1. Widening:
+			- The process of converting smaller range of primitive data type into larger range of primitive data type.
+		        - Widening process does not have any data loss.
+			- Since in widening there is no data loss compiler can implicitly do widening, hence it is also known as auto widening.
+	
+		2. Narrowing:
+			- Narrowing is a process of converting large range of primitive data type into small range of primitive data type.
+			- in narrowing, there is possibility of data loss.
+			- since in narrowing, there is a possibility of data loss compiler does not do the narrowing process implicitly.
+- it can be done explicitly by programmer with the help of cast operator.
+
+1) Program (Widening)
+	
+Class P1
+{
+  public static void main(String[] args){
+	int a=56;
+	float f=9;
+	System.out.println(a);//56
+	System.out.println(f);//9.0
+     }
+}
+
+2. Program (Narrowing)
+
+Class P2
+{
+	public static void main (String args[]){
+	
+	long a=85;
+	char ch= char (a);
+	}
+}
+* Method:
+	Is a block of instructions which is used to perform specific task and it is used to transfer the data.
+	[Access modify] [Modifier] return type  name (format[] argument)
+	
+	Method signature:
+	Declaration contains access modified, modifier, written type, and method signature.
+	
+	Method definition:
+	Method declaration contains method declaration and method body.
+
+	Access modifier:
+	Access modify is used to change the accessibility of a member.
+
+	Modifier:
+	Modifier is used to change the behaviour and characteristics of a member.
+
+	Method call statement:
+		Statement which is used to call another method is known as method call statement.
+
+	Method statement flow:
+    * Execution of method will pause
+    * Control its transfer to the called method
+    * Execution of called method begins
+    * Once the execution of called method is completed, the control transfer back to calling method
+    * Execution of calling method or colour method will be resumed
+Caller method or calling method:	
+			The method which is trying to call another method is known as caller method.
+
+		Called method:
+			The method which is called by another method is known as called method.
+
+Program-
+public class P1
+{
+   public static void main(Sting[] args){
+   int a=20;
+   int b=30;
+   int c=a+b;
+System.out.println(c);
+}
+ public static void main(String[] args){
+ System.out.println("Main Start");
+ add();
+ System.out.println("Main end");
+ }
+}
+
+Program
+
+public class P2
+  public class void main(String[] args){
+ System.out.println("Hello from temp");
+}
+ public class void main(String[] args){
+ System.out.println("Main Start");
+ add();
+ System.out.println("Main end");
+ }
+ public class void test(){
+ System.out.println("Hello from test")
+ temp();
+ }
+}
+
+.Return type

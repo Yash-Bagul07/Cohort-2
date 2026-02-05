@@ -1,0 +1,318 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSentry | Network Intrusion Detection</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.5.4/dist/socket.io.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Navbar -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="shield"></i>
+                <span class="font-bold text-xl">CyberSentry</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="hover:text-blue-200 font-medium transition-colors duration-200">Home</a>
+                <a href="./dashboard.html" class="hover:text-blue-200 font-medium transition-colors duration-200">Dashboard</a>
+                <a href="./logs.html" class="hover:text-blue-200 font-medium transition-colors duration-200">Logs</a>
+                <a href="./reports.html" class="hover:text-blue-200 font-medium transition-colors duration-200">Reports</a>
+                <a href="./settings.html" class="hover:text-blue-200 font-medium transition-colors duration-200">Settings</a>
+</div>
+<div class="flex items-center space-x-4">
+                <button id="darkModeToggle" class="p-2 rounded-full hover:bg-blue-800">
+                    <i data-feather="moon"></i>
+                </button>
+                <div class="relative">
+                    <button id="userMenuButton" class="flex items-center space-x-2">
+                        <span class="font-medium">Guest</span>
+                        <i data-feather="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10">
+                        <a href="./login.html" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
+                        <a href="./register.html" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Register</a>
+                    </div>
+                </div>
+</div>
+            <button id="mobileMenuButton" class="md:hidden p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden gradient-bg px-4 pb-4 transition-all duration-300 ease-in-out">
+            <a href="/" class="block py-3 hover:text-blue-200 transition-colors duration-200 border-b border-blue-400/30">Home</a>
+            <a href="./dashboard.html" class="block py-3 hover:text-blue-200 transition-colors duration-200 border-b border-blue-400/30">Dashboard</a>
+            <a href="./logs.html" class="block py-3 hover:text-blue-200 transition-colors duration-200 border-b border-blue-400/30">Logs</a>
+                <a href="./reports.html" class="block py-3 hover:text-blue-200 transition-colors duration-200 border-b border-blue-400/30">Reports</a>
+                <a href="./settings.html" class="block py-3 hover:text-blue-200 transition-colors duration-200 border-b border-blue-400/30">Settings</a>
+</div>
+</nav>
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-28 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/20 to-transparent"></div>
+        <div class="absolute inset-0 bg-[url('http://static.photos/technology/1200x630/42')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+                Enterprise-Grade Network Security
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto animate-fade-in-up delay-200 font-light tracking-wide">
+                AI-driven threat detection with 99.9% accuracy to protect your critical infrastructure
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up delay-400">
+                <a href="./dashboard.html" class="bg-white text-blue-800 hover:bg-gray-100 px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
+                    <i data-feather="shield"></i>
+                    Get Protected
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-white/70 hover:bg-white/10 hover:border-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
+                    <i data-feather="info"></i>
+                    Learn More
+                </a>
+            </div>
+            <div class="mt-16 animate-fade-in-up delay-600">
+                <div class="inline-flex items-center space-x-8">
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-6 h-6 text-green-300 mr-2"></i>
+                        <span class="font-medium">SOC2 Compliant</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-6 h-6 text-green-300 mr-2"></i>
+                        <span class="font-medium">24/7 Monitoring</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-6 h-6 text-green-300 mr-2"></i>
+                        <span class="font-medium">Enterprise SLA</span>
+                    </div>
+                </div>
+            </div>
+</div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1 text-sm font-semibold text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
+                    ENTERPRISE SECURITY
+                </span>
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-6 animate-fade-in">
+                    Advanced Threat Protection
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive security solutions designed for modern enterprises
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-700 dark:to-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-3 group border border-gray-100 dark:border-gray-700">
+                    <div class="text-blue-600 dark:text-blue-400 mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/50">
+                            <i data-feather="activity" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Real-time Monitoring</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Enterprise-grade continuous monitoring with sub-second detection latency and live threat visualization.
+                    </p>
+                    <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span>Packet-level analysis</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span>Behavioral anomaly detection</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+<!-- Feature 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="text-blue-600 dark:text-blue-400 mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-feather="shield" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">AI-Powered Detection</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Machine learning models identify anomalies and potential threats with high accuracy.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="text-blue-600 dark:text-blue-400 mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                        <i data-feather="file-text" class="w-12 h-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Comprehensive Reports</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Generate detailed reports and export them in multiple formats for analysis and compliance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white animate-fade-in">How CyberSentry Works</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center mb-12 group hover:bg-white/50 dark:hover:bg-gray-800/50 p-6 rounded-2xl transition-all duration-300">
+                    <div class="md:w-1/3 mb-4 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900 p-6 rounded-full group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="upload" class="w-16 h-16 text-blue-600 dark:text-blue-300"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">1. Network Data Collection</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            CyberSentry collects network traffic data from various sources including firewalls, routers, and endpoint devices.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center mb-12 group hover:bg-white/50 dark:hover:bg-gray-800/50 p-6 rounded-2xl transition-all duration-300">
+                    <div class="md:w-1/3 mb-4 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900 p-6 rounded-full group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="cpu" class="w-16 h-16 text-blue-600 dark:text-blue-300"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">2. AI Analysis</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Our advanced algorithms analyze patterns in the network traffic to detect anomalies and potential threats.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center group hover:bg-white/50 dark:hover:bg-gray-800/50 p-6 rounded-2xl transition-all duration-300">
+                    <div class="md:w-1/3 mb-4 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900 p-6 rounded-full group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="alert-triangle" class="w-16 h-16 text-blue-600 dark:text-blue-300"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">3. Alert & Response</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Immediate alerts are generated for security teams with recommended actions to mitigate risks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="relative gradient-bg text-white py-24 overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[url('http://static.photos/technology/1200x630/85')] bg-cover bg-center"></div>
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl font-bold mb-6">Enterprise Security Starts Here</h2>
+            <p class="text-xl mb-10 max-w-3xl mx-auto font-light">
+                Schedule a demo with our security experts to see CyberSentry in action
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="./register.html" class="bg-white text-blue-800 hover:bg-gray-100 px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center justify-center">
+                    <i data-feather="shield" class="mr-2"></i>
+                    Start Free Trial
+                </a>
+                <a href="#" class="bg-transparent border-2 border-white/70 hover:bg-white/10 hover:border-white px-10 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 inline-flex items-center justify-center">
+                    <i data-feather="calendar" class="mr-2"></i>
+                    Book Demo
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="shield"></i>
+                        <span class="font-bold text-xl">CyberSentry</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Advanced Network Intrusion Detection System</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-blue-300">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        <i data-feather="github"></i>
+                    </a>
+                    <a href="#" class="hover:text-blue-300">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 CyberSentry. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Initialize feather icons
+        feather.replace();
+        
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+            darkModeToggle.innerHTML = feather.icons['sun'].toSvg();
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+            darkModeToggle.innerHTML = isDark 
+                ? feather.icons['sun'].toSvg() 
+                : feather.icons['moon'].toSvg();
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.innerHTML = mobileMenu.classList.contains('hidden')
+                ? feather.icons['menu'].toSvg()
+                : feather.icons['x'].toSvg();
+        });
+
+        // Check authentication status
+        const token = localStorage.getItem('token');
+        const loginButton = document.querySelector('a[href="/login"]');
+        const userMenu = document.getElementById('userMenu');
+        
+        if (token) {
+            // User is logged in
+            if (loginButton) {
+                loginButton.textContent = 'Dashboard';
+                loginButton.href = '/dashboard.html';
+            }
+        }
+
+        // Check if user is authenticated on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                // Redirect to dashboard if already logged in
+                window.location.href = '/dashboard.html';
+            }
+        });
+// Show user menu if it exists
+            if (userMenu) {
+                userMenu.classList.remove('hidden');
+            }
+        
+    </script>
+</body>
+</html>

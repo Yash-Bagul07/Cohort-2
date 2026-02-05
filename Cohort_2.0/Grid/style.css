@@ -1,0 +1,108 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgb(168, 59, 57), rgba(0, 0, 0, 0.986) , maroon, rgb(59, 87, 210));
+    display: grid;
+    grid-template-columns: 35% 1fr 35%;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-template-areas: "top-left top-center top-right"
+                         "top-left center bottom-right"
+                         "bottom-left bottom-left bottom-right";
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+
+#top-left{
+    height: 100%;
+    width: 100%;
+    grid-area: top-left;
+    background-color: aqua;
+    display: flex;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#bottom-left{
+    grid-area: bottom-left;
+    background-color:maroon;
+     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    object-fit:cover;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#bottom-left img{
+    object-fit:cover;
+}
+
+#top-center{
+    
+    grid-area: top-center;
+    background-color:chocolate;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+
+#center{
+    grid-area: center;
+    background-color:blueviolet;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    object-fit:contain;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#top-right{
+    grid-area: top-right;
+    background-color:skyblue;
+    display: flex;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#bottom-right{
+     height: 100%;
+    width: 100%;
+    grid-area: bottom-right;
+    background-color: deeppink;
+    display: flex;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+img:hover {
+  transform: scale(1.2);
+  transition: transform 1s ease;
+  cursor: pointer;
+}
