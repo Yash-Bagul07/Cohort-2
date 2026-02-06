@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     margin: 0;
     padding: 0;
@@ -163,4 +164,171 @@ section{
 
 .right>div h6{
     pointer-events: none;
+=======
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+    background: linear-gradient(to right bottom,rgb(36, 36, 36),rgb(45, 44, 44),black);
+}
+
+section{
+    height: 100%;
+    width: 380px;
+    background-color: black;
+    margin: auto;
+    border-radius: 10px;    
+}
+
+
+.all-reels{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+
+.all-reels::-webkit-scrollbar{
+    display: none;
+}
+
+.reels{
+    height: 100%;
+    width: 100%;
+    background-color:darkslateblue;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    scroll-snap-align: start;
+    scroll-snap-stop:always ;
+}
+
+.reels video{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.reels img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.reels .bottom{
+    width: 100%;
+    padding: 20px 20px;
+    position: absolute;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.948));
+    bottom: 0;
+    border-radius: 10px;
+}
+
+.bottom .user{
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-bottom: 10px;
+}
+
+.bottom .user img{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bottom .user h4{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.bottom .user button{
+    background-color: transparent;
+    color: white;
+    padding: 3px 7px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 2px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.bottom>h3{
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.right{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+    width: 40px;
+    position: absolute;
+    /*transform: translate(100%);*/
+    right: 0;
+    bottom: 10%;
+}
+
+.right h4{
+    cursor: pointer;
+}
+
+.right i{
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.right h6{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.right>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    cursor: pointer;
+}
+
+.love{
+    color: red;
+}
+
+.right>div h4{
+    pointer-events: none;
+}
+
+.right>div h6{
+    pointer-events: none;
+>>>>>>> cc7569c7b5c336bd52f81629992fbaf102eac69c
 }
